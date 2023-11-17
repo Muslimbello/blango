@@ -1,10 +1,16 @@
 #!/bin/bash
-# add all files to staging area
-git add .
-# Prompt for commit message
-echo -n "Enter a commit message: "
-read message
 
+# Check for staging file editing
+read -p "Do you want to edit staging files? (y/n): " response
+if [[ $response = 'y' || $response = 'Y'  ]]; then
+  read -p "Enter the file name: " file
+  git add "$file"
+else
+  git add .
+fi
+
+# Ask for commit message
+read -p "Enter a commit message: " message
 
 # Commit the changes
 git commit -m "$message"
