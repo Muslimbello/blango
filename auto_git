@@ -1,0 +1,13 @@
+#!/bin/bash
+# add all files to staging area
+git add .
+# Prompt for commit message
+echo -n "Enter a commit message: "
+read message
+
+
+# Commit the changes
+git commit -m "$message"
+
+# Push the changes to remote repository
+git push origin master
