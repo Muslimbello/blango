@@ -56,6 +56,7 @@ LOGGING = {
         "level": "DEBUG",
     },
 }
+AUTH_USER_MODEL = "blango_auth.User"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-+sn%dpa!086+g+%44z9*^j^q-u4n!j(#wl)x9a%_1op@zz2+1-"
 
@@ -83,6 +84,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "blango_auth",
     "blog",
     "crispy_forms",
     "crispy_bootstrap5",
