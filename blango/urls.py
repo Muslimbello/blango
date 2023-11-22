@@ -17,11 +17,24 @@ from django.contrib import admin
 from django.urls import path ,include
 from django.conf import settings
 import debug_toolbar
-from blog import views
+from blog.views import get_ip
+from blango_auth.views import profile
+from django_registration.backends.activation.views import RegistrationView
+from blango_auth.forms import BlangoRegistrationForm
+# print(profile)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , include('blog.urls')),
-    path("ip/",views.get_ip),
+    path("ip/",get_ip),
+    path('accounts/', include('django_registration.backends.activation.urls')),
+    path("accounts/profile/",profile, name="profile"),
+    path(
+    "accounts/register/",
+    RegistrationView.as_view(form_class=BlangoRegistrationForm),
+    name="django_registration_register",
+    ),
+    path("accounts/", include("django_registration.backends.activation.urls")),
+    
 ]
 if settings.DEBUG:
   urlpatterns += [

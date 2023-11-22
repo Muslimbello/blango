@@ -186,3 +186,6 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 DJANGO_ADMINS="muslim, muslimbello123@gmail.com"
 INTERNAL_IPS = ["192.168.10.93"]
+#email settings
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+ACCOUNT_ACTIVATION_DAYS = 7
