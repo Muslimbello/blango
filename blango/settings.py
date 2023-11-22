@@ -18,7 +18,45 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+    },
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout",
+            "formatter": "verbose",
+        },
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+            "filters": ["require_debug_false"],
+        },
+    },
+    "loggers": {
+        "django.request": {
+            "handlers": ["mail_admins"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "DEBUG",
+    },
+}
+AUTH_USER_MODEL = "blango_auth.User"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-+sn%dpa!086+g+%44z9*^j^q-u4n!j(#wl)x9a%_1op@zz2+1-"
 
@@ -46,12 +84,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "blango_auth",
     "blog",
     "crispy_forms",
     "crispy_bootstrap5",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -110,7 +151,12 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
+PASSWORD_HASHERS = [
+      'django.contrib.auth.hashers.Argon2PasswordHasher',
+      'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+      'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+      'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+  ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -138,3 +184,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+DJANGO_ADMINS="muslim, muslimbello123@gmail.com"
+INTERNAL_IPS = ["192.168.10.93"]
