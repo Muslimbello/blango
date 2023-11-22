@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Enter a command:"
+
+read command
+
+python manage.py $command
