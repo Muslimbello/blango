@@ -85,8 +85,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.sites",
     "django.contrib.staticfiles",
+    "rest_framework",
     "blango_auth",
     "blog",
+
     "crispy_forms",
     "crispy_bootstrap5",
     "debug_toolbar",
