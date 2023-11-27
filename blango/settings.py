@@ -88,7 +88,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "blango_auth",
     "blog",
-
+    "rest_framework.authtoken",
     "crispy_forms",
     "crispy_bootstrap5",
     "debug_toolbar",
@@ -204,3 +204,12 @@ INTERNAL_IPS = ["192.168.10.93"]
 #email settings
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_ACTIVATION_DAYS = 7
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+}
