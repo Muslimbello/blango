@@ -26,19 +26,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('' , include('blog.urls')),
     path("ip/",get_ip),
-    path('accounts/', include('django_registration.backends.activation.urls')),
+    path("accounts/", include("allauth.urls")),
     path("accounts/profile/",profile, name="profile"),
     path(
     "accounts/register/",
     RegistrationView.as_view(form_class=BlangoRegistrationForm),
-    name="django_registration_register",
-    ),
+    name="django_registration_register",),
     path("accounts/", include("django_registration.backends.activation.urls")),
-    path("accounts/", include("allauth.urls")),
     path("api/v1/", include("blog.api.urls")),
-    
 ]
 if settings.DEBUG:
-  urlpatterns += [
+    urlpatterns += [
     path("__debug__/" , include(debug_toolbar.urls)),
   ]
