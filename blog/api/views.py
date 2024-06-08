@@ -5,7 +5,6 @@
 # from rest_framework.response import Response
 # from . import permissions
 from rest_framework import generics
-from rest_framework import permissions
 from blog.api.serializers import PostSerializer
 from blog.models import Post
 from blango_auth.models import User
